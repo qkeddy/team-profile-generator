@@ -5,18 +5,16 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
 const Questions = require("./src/questions");
-const questions = require("./src/questions");
 // const questions = require("./src/questions.json");
-
-
 
 // Collect information for the manager
 function collectManagementInfo() {
-    const managementQuestions = new Questions(true);
-    // console.log(managementQuestion.getQuestions());
-    inquirer.prompt(managementQuestions.getQuestions()).catch((err) => console.error(err));
+    return new Promise((resolve, reject) => {
+        const managementQuestions = new Questions(true);
+        // console.log(managementQuestion.getQuestions());
+        inquirer.prompt(managementQuestions.getQuestions()).then(resolve).catch(reject);
+    });
 }
-
 
 // Collect information for the team
 function collectTeamInfo() {
@@ -24,8 +22,6 @@ function collectTeamInfo() {
     // console.log(staffQuestion.getQuestions());
     inquirer.prompt(staffQuestions.getQuestions()).catch((err) => console.error(err));
 }
-
-
 
 function init() {
     // Testing class plumbing
@@ -39,8 +35,18 @@ function init() {
 
     console.log("Welcome to the team profile builder");
 
-    collectManagementInfo();
-    collectTeamInfo();
+    // Collection information for the manager
+    collectManagementInfo().then(collectTeamInfo);
+    // Add information collected to a team array
+
+    // Then collect information for the team
+    // Ask if you want to add team members
+    // If yes, then
+
+    // Add information collected to a team array
+    // Keep looping until there is a no
+
+    // If no, then build the team page
 }
 
 init();

@@ -40,7 +40,7 @@ class Questions {
                 {
                     name: "employeeTitle",
                     message: "Please select employee type\n",
-                    choices: ["Engineer", "Intern"],
+                    choices: ["Engineer", "Intern", "No one else to add"],
                     type: "list",
                 },
             ];
