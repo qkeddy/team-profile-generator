@@ -1,16 +1,40 @@
-[{
-        "name": "fullName",
-        "message": "Please enter the employee's full name\n",
-        "type": "input"
-    },
-    {
-        "name": "id",
-        "message": "Please enter the employee's id\n",
-        "type": "input"
-    },
-    {
-        "name": "email",
-        "message": "Please enter the employee's email\n",
-        "type": "input"
-    }
-]
+    [{
+            "name": "fullName",
+            "message": "Please enter the employee's full name\n",
+            "type": "input"
+        },
+        {
+            "name": "id",
+            "message": "Please enter the employee's id\n",
+            "type": "input"
+        },
+        {
+            "name": "email",
+            "message": "Please enter the employee's email\n",
+            "type": "input"
+        },
+        {
+            "name": "employeeTitle",
+            "message": "Please enter the employee's email\n",
+            "choices": ["Manager", "Engineer", "Intern"],
+            "type": "list"
+        },
+        {
+            "name": "manager",
+            "message": "Please enter the managers's telephone number.\n",
+            "type": "input",
+            "when": "(answers) => answers.employeeTitle === 'Manager'"
+        },
+        {
+            "name": "engineer",
+            "message": "Please enter the engineer's GitHub ID.\n",
+            "type": "input",
+            "when": "(answers) => answers.employeeTitle === 'Engineer'"
+        },
+        {
+            "name": "engineer",
+            "message": "Please enter the interns's school.\n",
+            "type": "input",
+            "when": "(answers) => answers.employeeTitle === 'Intern'"
+        }
+    ]
