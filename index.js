@@ -1,52 +1,86 @@
 // Require classes
+const { template } = require("@babel/core");
 const inquirer = require("inquirer");
+const { resolve } = require("path");
 const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
 const Questions = require("./src/questions");
-// const questions = require("./src/questions.json");
+
+const teamInfo = [];
 
 // Collect information for the manager
+// TODO Question - I tried to make these constants as in the #10-07 example, but that does not work
 function collectManagementInfo() {
     return new Promise((resolve, reject) => {
         const managementQuestions = new Questions(true);
-        // console.log(managementQuestion.getQuestions());
-        inquirer.prompt(managementQuestions.getQuestions()).then(resolve).catch(reject);
+        inquirer
+            .prompt(managementQuestions.getQuestions())
+            .then((answers) => resolve(teamInfo.push(new Manager(answers.fullName, answers.id, answers.email, answers.managerPhone))))
+            .catch(reject);
+    });
+}
+
+// Ask if staff should be added
+function addStaff() {
+    // TODO Question - the reject doesn't seem to be used
+    return new Promise((resolve, reject) => {
+        inquirer
+            .prompt([
+                {
+                    name: "addStaff",
+                    message: "Do you want to add staff?\n",
+                    type: "confirm",
+                },
+            ])
+            .then((answers) => {
+                resolve(answers.addStaff);
+            })
+            .catch((err) => console.error(err));
     });
 }
 
 // Collect information for the team
 function collectTeamInfo() {
-    const staffQuestions = new Questions(false);
-    // console.log(staffQuestion.getQuestions());
-    inquirer.prompt(staffQuestions.getQuestions()).catch((err) => console.error(err));
+    return new Promise((resolve, reject) => {
+        const staffQuestions = new Questions(false);
+        inquirer
+            .prompt(staffQuestions.getQuestions())
+            .then((answers) => {
+                // TODO Question - it feels like there is no reason to instantiate these new objects and them push them on to an array. Seems very inefficient. 
+                if (answers.employeeTitle == "Engineer") resolve(teamInfo.push(new Engineer(answers.fullName, answers.id, answers.email)));
+                if (answers.employeeTitle == "Intern") resolve(teamInfo.push(new Intern(answers.fullName, answers.id, answers.email)));
+            })
+            .catch((err) => console.error(err));
+    });
 }
 
 function init() {
-    // Testing class plumbing
-    const ryan = new Engineer("Ryan", 123, "ryan@me.com", "ryan@github");
-    const ginsu = new Intern("Ginsu", 789, "ginsu.eddy@gmail.com", "UofW");
-    const barbara = new Manager("Barbara", 456, "blmeelens@gmail.com", "212-888-7777");
-
-    console.log(`${ryan.getId()}  |  ${ryan.getGitHubUser()}`);
-    console.log(`${ginsu.getId()}  |  ${ginsu.getSchool()}`);
-    console.log(`${barbara.getId()}  |  ${barbara.getOfficeNumber()}`);
-
-    console.log("Welcome to the team profile builder");
+    console.log("Welcome to the team profile builder. Lets enter information for the manager.");
 
     // Collection information for the manager
-    collectManagementInfo().then(collectTeamInfo);
-    // Add information collected to a team array
+    collectManagementInfo()
+        .then(() => {
+            console.log("Thank you for the manager input.");
+            let addStaff1 = true;
 
-    // Then collect information for the team
-    // Ask if you want to add team members
-    // If yes, then
+            // TODO Question - we need a looping structure but, this creates an endless loop
+            while (addStaff1) {
+                // Ask if a new staff member should be added
+                addStaff().then((addStaff_) => {
+                    console.log(addStaff1);
+                    addStaff1 = addStaff_;
+                    console.log(addStaff1);
+                    console.log("Now lets build out the team.");
+                    // TODO Question - is it possible to move this to a second .then like in the #10-07 example?
+                    collectTeamInfo().then(() => {
+                        console.log(teamInfo);
+                    });
+                });
+            }
+        })
 
-    // Add information collected to a team array
-    // Keep looping until there is a no
-
-    // If no, then build the team page
+        .catch((err) => console.error(err));
 }
-
 init();

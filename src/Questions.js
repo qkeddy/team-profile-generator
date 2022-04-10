@@ -9,16 +9,19 @@ class Questions {
                 name: "fullName",
                 message: "Please enter the employee's full name\n",
                 type: "input",
+                when: (answers) => answers.employeeTitle !== "No one else to add",
             },
             {
                 name: "id",
                 message: "Please enter the employee's id\n",
                 type: "input",
+                when: (answers) => answers.employeeTitle !== "No one else to add",
             },
             {
                 name: "email",
                 message: "Please enter the employee's email\n",
                 type: "input",
+                when: (answers) => answers.employeeTitle !== "No one else to add",
             },
         ];
         // Array of questions for a manager
