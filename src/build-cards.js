@@ -8,7 +8,7 @@ const buildCards = (teamInfo) => {
     const managerCards = managers
         .map((element) => {
             return `
-            <div class="card">
+            <div class="card col-12 col-md-6 col-lg-4">
             <div class="card-header" style="background-color: #0d6efd; color: white; flex: 1">
                 <h2 class="card-title">${element.name}</h2>
                 <h3 class="card-title">${element.getRole()}</h3>
@@ -28,7 +28,7 @@ const buildCards = (teamInfo) => {
     const engineerCards = engineers
         .map((element) => {
             return `
-            <div class="card">
+            <div class="card col-12 col-md-6 col-lg-4">
             <div class="card-header" style="background-color: #0d6efd; color: white; flex: 1">
                 <h2 class="card-title">${element.name}</h2>
                 <h3 class="card-title">${element.getRole()}</h3>
@@ -37,7 +37,7 @@ const buildCards = (teamInfo) => {
                 <ul class="list-group">
                     <li class="list-group-item">ID: ${element.id}</li>
                     <li class="list-group-item">Email: <a href="mailto:${element.email}">${element.email}</a></li>
-                    <li class="list-group-item">GitHub: ${element.gitHubUser}</li>
+                    <li class="list-group-item">GitHub: <a href="https://github.com/${element.gitHubUser}" target="_blank">${element.gitHubUser}</a></li>
                 </ul>
             </div>
             </div>`;
@@ -48,7 +48,7 @@ const buildCards = (teamInfo) => {
     const internCards = interns
         .map((element) => {
             return `
-            <div class="card">
+            <div class="card col-12 col-md-6 col-lg-4">
             <div class="card-header" style="background-color: #0d6efd; color: white; flex: 1">
                 <h2 class="card-title">${element.name}</h2>
                 <h3 class="card-title">${element.getRole()}</h3>

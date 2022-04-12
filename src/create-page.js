@@ -24,15 +24,13 @@ const buildTeamPage = ({ managerCards, engineerCards, internCards }) => {
 
                     <section class="container" style="margin-top: 10px">
                         <div class="row">
-                            <div class="col-12 d-flex justify-content-center">
-                                
+                                  
                             ${managerCards}
 
                             ${engineerCards}
 
                             ${internCards}
-
-                            </div>
+                            
                         </div>
                     </section>
                 </body>
