@@ -15,10 +15,10 @@ function addStaffFunction() {
         .prompt(buildStaffQuestions())
         .then((answers) => {
             if (answers.employeeTitle == "Engineer") {
-                teamInfo.push(new Engineer(answers.fullName, answers.id, answers.email));
+                teamInfo.push(new Engineer(answers.fullName, answers.id, answers.email, answers.gitHubAcct));
                 addStaffFunction();
             } else if (answers.employeeTitle == "Intern") {
-                teamInfo.push(new Intern(answers.fullName, answers.id, answers.email));
+                teamInfo.push(new Intern(answers.fullName, answers.id, answers.email, answers.school));
                 addStaffFunction();
             } else {
                 // If no more team members need to be added, then build HTML page
