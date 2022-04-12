@@ -32,7 +32,7 @@ const managementQuestions = [
 // Staff questions
 const staffQuestions = [
     {
-        name: "gitHubAcct",
+        name: "gitHubUser",
         message: "Please enter the engineer's GitHub ID.\n",
         type: "input",
         when: (answers) => answers.employeeTitle === "Engineer",

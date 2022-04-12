@@ -15,7 +15,7 @@ function addStaffFunction() {
         .prompt(buildStaffQuestions())
         .then((answers) => {
             if (answers.employeeTitle == "Engineer") {
-                teamInfo.push(new Engineer(answers.fullName, answers.id, answers.email, answers.gitHubAcct));
+                teamInfo.push(new Engineer(answers.fullName, answers.id, answers.email, answers.gitHubUser));
                 addStaffFunction();
             } else if (answers.employeeTitle == "Intern") {
                 teamInfo.push(new Intern(answers.fullName, answers.id, answers.email, answers.school));
