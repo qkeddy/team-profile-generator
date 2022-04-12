@@ -1,20 +1,18 @@
 // Require classes
-const { template } = require("@babel/core");
+//const { template } = require("@babel/core");
 const inquirer = require("inquirer");
-const { resolve } = require("path");
-const Employee = require("./lib/Employee");
+//const { resolve } = require("path");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
-const Questions = require("./src/questions");
+const { buildMgmtQuestions, buildStaffQuestions } = require("./src/questions");
 
 const teamInfo = [];
 
 // Collect information for the Staff
 function addStaffFunction() {
-    const staffQuestions = new Questions(false);
     inquirer
-        .prompt(staffQuestions.getQuestions())
+        .prompt(buildStaffQuestions())
         .then((answers) => {
             if (answers.employeeTitle == "Engineer") {
                 teamInfo.push(new Engineer(answers.fullName, answers.id, answers.email));
@@ -23,6 +21,7 @@ function addStaffFunction() {
                 teamInfo.push(new Intern(answers.fullName, answers.id, answers.email));
                 addStaffFunction();
             } else {
+                // If no more team members need to be added, then build HTML page
                 console.log(teamInfo);
                 // generate HTML code
             }
@@ -32,18 +31,14 @@ function addStaffFunction() {
 
 function init() {
     // Collect information for the manager
-    const managementQuestions = new Questions(true);
     inquirer
-        .prompt(managementQuestions.getQuestions())
+        .prompt(buildMgmtQuestions())
         .then((answers) => {
             teamInfo.push(new Manager(answers.fullName, answers.id, answers.email, answers.managerPhone));
             addStaffFunction();
         })
         .catch((err) => console.error(err));
-
-    // Collect information for the team.
-
-    // If no more team members need to be added, then build HTML page
 }
+
 
 init();
