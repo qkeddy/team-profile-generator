@@ -1,11 +1,11 @@
 // Require classes
-//const { template } = require("@babel/core");
 const inquirer = require("inquirer");
-//const { resolve } = require("path");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
 const { buildMgmtQuestions, buildStaffQuestions } = require("./src/questions");
+const { buildCards } = require("./src/build-cards")
+const { buildTeamPage } = require("./src/create-page")
 
 const teamInfo = [];
 
@@ -22,8 +22,11 @@ function addStaffFunction() {
                 addStaffFunction();
             } else {
                 // If no more team members need to be added, then build HTML page
-                console.log(teamInfo);
-                // generate HTML code
+                const teamCards = buildCards(teamInfo); 
+
+                // Build and write primary page
+                buildTeamPage(teamCards);
+
             }
         })
         .catch((err) => console.error(err));
@@ -40,5 +43,5 @@ function init() {
         .catch((err) => console.error(err));
 }
 
-
+    
 init();
