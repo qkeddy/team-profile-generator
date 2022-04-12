@@ -38,7 +38,7 @@ const buildTeamPage = ({ managerCards, engineerCards, internCards }) => {
                 </body>
             </html>`;
 
-    fs.writeFile("./dist/test.html", htmlPage, "utf8", (error, data) => (error ? console.error(error) : console.log("Team HTML file written successfully")));
+    fs.writeFile("./dist/index.html", htmlPage, "utf8", (error, data) => (error ? console.error(error) : console.log("Team HTML file written successfully")));
 };
 
 module.exports = { buildTeamPage };

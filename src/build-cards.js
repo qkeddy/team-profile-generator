@@ -16,7 +16,7 @@ const buildCards = (teamInfo) => {
             <div class="card-body">
                 <ul class="list-group">
                     <li class="list-group-item">ID: ${element.id}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${element.email}">email</a></li>
+                    <li class="list-group-item">Email: <a href="mailto:${element.email}">${element.email}</a></li>
                     <li class="list-group-item">Tel: ${element.officeNumber}</li>
                 </ul>
             </div>
@@ -36,7 +36,7 @@ const buildCards = (teamInfo) => {
             <div class="card-body">
                 <ul class="list-group">
                     <li class="list-group-item">ID: ${element.id}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${element.email}">email</a></li>
+                    <li class="list-group-item">Email: <a href="mailto:${element.email}">${element.email}</a></li>
                     <li class="list-group-item">GitHub: ${element.gitHubUser}</li>
                 </ul>
             </div>
@@ -56,8 +56,8 @@ const buildCards = (teamInfo) => {
             <div class="card-body">
                 <ul class="list-group">
                     <li class="list-group-item">ID: ${element.id}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${element.email}">email</a></li>
-                    <li class="list-group-item">GitHub: ${element.school}</li>
+                    <li class="list-group-item">Email: <a href="mailto:${element.email}">${element.email}</a></li>
+                    <li class="list-group-item">School: ${element.school}</li>
                 </ul>
             </div>
             </div>`;
