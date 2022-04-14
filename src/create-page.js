@@ -35,7 +35,9 @@ const buildTeamPage = ({ managerCards, engineerCards, internCards }) => {
                     </section>
                 </body>
             </html>`;
+    
 
+    // Write the HTML file to the file system
     fs.writeFile("./dist/index.html", htmlPage, "utf8", (error, data) => (error ? console.error(error) : console.log("Team HTML file written successfully")));
 };
 

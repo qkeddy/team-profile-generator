@@ -16,12 +16,14 @@ function addStaffFunction() {
         .then((answers) => {
             if (answers.employeeTitle == "Engineer") {
                 teamInfo.push(new Engineer(answers.fullName, answers.id, answers.email, answers.gitHubUser));
+                // Recursively call the add staff function for the next staff addition
                 addStaffFunction();
             } else if (answers.employeeTitle == "Intern") {
                 teamInfo.push(new Intern(answers.fullName, answers.id, answers.email, answers.school));
+                // Recursively call the add staff function for the next staff addition
                 addStaffFunction();
             } else {
-                // If no more team members need to be added, then build HTML page
+                // The employee title did not match any of the prior cases, so no more team members need to be added, and now build the HTML page. 
                 const teamCards = buildCards(teamInfo); 
 
                 // Build and write primary page
@@ -38,6 +40,7 @@ function init() {
         .prompt(buildMgmtQuestions())
         .then((answers) => {
             teamInfo.push(new Manager(answers.fullName, answers.id, answers.email, answers.managerPhone));
+            // Call the add staff function
             addStaffFunction();
         })
         .catch((err) => console.error(err));

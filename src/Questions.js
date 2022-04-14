@@ -1,3 +1,6 @@
+// Questions module
+// TODO add question validation
+
 // General questions
 const generalQuestions = [
     {
@@ -55,8 +58,10 @@ const employeeTypeQuestion = [
     },
 ];
 
-const buildStaffQuestions = () => [].concat(employeeTypeQuestion, generalQuestions, staffQuestions);
-
+// Build the management question array by concatenating the sub arrays
 const buildMgmtQuestions = () => [].concat(generalQuestions, managementQuestions);
+
+// Build the staff question array by concatenating the sub arrays
+const buildStaffQuestions = () => [].concat(employeeTypeQuestion, generalQuestions, staffQuestions);
 
 module.exports = { buildMgmtQuestions, buildStaffQuestions };

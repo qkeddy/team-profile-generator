@@ -1,4 +1,5 @@
 // Employee unit test
+// TODO Enhance the tests to accommodate when a value is not provided
 
 const Employee = require("../lib/Employee");
 

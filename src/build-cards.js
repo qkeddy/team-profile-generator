@@ -4,7 +4,7 @@ const buildCards = (teamInfo) => {
     const engineers = teamInfo.filter((element) => element.getRole() === "Engineer");
     const interns = teamInfo.filter((element) => element.getRole() === "Intern");
 
-    // Creat a new manager array populated with injected HTML
+    // Create a new manager array populated with injected HTML
     const managerCards = managers
         .map((element) => {
             return `
